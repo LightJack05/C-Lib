@@ -39,6 +39,12 @@ Example usage:
     void enQueue##T(struct Queue##T *queue, T data)                                                            \
     {                                                                                                          \
         struct QueueElement##T *newElement = (struct QueueElement##T *)malloc(sizeof(struct QueueElement##T)); \
+                                                                                                               \
+        if (newElement == NULL)                                                                                \
+        {                                                                                                      \
+            fprintf(stderr, "Memory allocation failed in enQueue.");                                           \
+            return;                                                                                            \
+        }                                                                                                      \
         newElement->data = data;                                                                               \
         newElement->ptrNextElement = NULL;                                                                     \
         if (isQueueEmpty##T(queue))                                                                            \
@@ -76,6 +82,8 @@ Example usage:
     struct Queue##T *newQueue##T()                                                                             \
     {                                                                                                          \
         struct Queue##T *queue = (struct Queue##T *)malloc(sizeof(struct Queue##T));                           \
+        queue->start = NULL;                                                                                   \
+        queue->end = NULL;                                                                                     \
         queue->isEmpty = isQueueEmpty##T;                                                                      \
         queue->enQueue = enQueue##T;                                                                           \
         queue->deQueue = deQueue##T;                                                                           \

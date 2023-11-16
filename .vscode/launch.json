@@ -6,12 +6,12 @@
             "request": "launch",
             "program": "${workspaceRoot}/bin/main.exe",
             "args": [],
-            "stopAtEntry": false,
-            "cwd": "C:\\Program Files (x86)\\mingw64\\bin",
+            "stopAtEntry": true,
+            "cwd": "C:\\Program Files\\mingw64\\bin",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\Program Files (x86)\\mingw64\\bin\\gdb.exe",
+            "miDebuggerPath": "C:\\Program Files\\mingw64\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
