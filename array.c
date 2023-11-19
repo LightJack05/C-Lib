@@ -78,6 +78,11 @@ int arrayPopLast(struct Array *this)
 
 int arrayPopAt(struct Array *this, int index)
 {
+    if (index == this->Length - 1)
+    {
+        return arrayPopLast(this);
+    }
+
     struct ArrayElement *elementToPop = arrayGetFullElementAtPosition(this, index);
     struct ArrayElement *previousElement = arrayGetFullElementAtPosition(this, index - 1);
     struct ArrayElement *nextElement = arrayGetFullElementAtPosition(this, index + 1);
