@@ -61,10 +61,7 @@ Example usage:
                                                                                                                \
     T deQueue##T(struct Queue##T *queue)                                                                       \
     {                                                                                                          \
-        if (isQueueEmpty##T(queue))                                                                            \
-        {                                                                                                      \
-            return;                                                                                            \
-        }                                                                                                      \
+                                                                                                               \
         if (queue->start->ptrNextElement == NULL)                                                              \
         {                                                                                                      \
             T lastValue = queue->start->data;                                                                  \

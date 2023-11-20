@@ -20,7 +20,7 @@ int main()
     printf("%d\n", intQueue->deQueue(intQueue));
     printf("%d\n", intQueue->isEmpty(intQueue));
 
-    printf("------------------");
+    printf("------------------\n");
 
     struct Queue(float) *floatQueue = newQueue(float);
     floatQueue->enQueue(floatQueue, 0.1);
