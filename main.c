@@ -5,11 +5,13 @@
 
 int main()
 {
-    defineGenericQueue(int);
-    struct Queue(int) *intQueue = newQueue(int);
-    intQueue->enQueue(intQueue, 16);
-    printf("%d\n", intQueue->deQueue(intQueue));
-    printf("%d\n", intQueue->isEmpty(intQueue));
+    // defineGenericQueue(int);
+    // struct Queue(int) *intQueue = newQueue(int);
+    // intQueue->enQueue(intQueue, 16);
+    // printf("%d\n", intQueue->deQueue(intQueue));
+    // printf("%d\n", intQueue->isEmpty(intQueue));
+
+    defineGenericLinkedList(int);
 
     struct GenericLinkedList *array = newGenericLinkedList();
     genericLinkedListPushBack(array, 8);
