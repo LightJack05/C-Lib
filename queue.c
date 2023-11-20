@@ -63,7 +63,7 @@ Example usage:
     {                                                                                                          \
         if (isQueueEmpty##T(queue))                                                                            \
         {                                                                                                      \
-            return NULL;                                                                                       \
+            return;                                                                                            \
         }                                                                                                      \
         if (queue->start->ptrNextElement == NULL)                                                              \
         {                                                                                                      \
