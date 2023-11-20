@@ -1,34 +1,34 @@
 #include <stdlib.h>
 
-struct Array
+struct GenericLinkedList
 {
     int Length;
-    struct ArrayElement *ptrStart;
-    struct ArrayElement *ptrEnd;
+    struct GenericLinkedListElement *ptrStart;
+    struct GenericLinkedListElement *ptrEnd;
 };
 
-struct ArrayElement
+struct GenericLinkedListElement
 {
     int data;
-    struct ArrayElement *ptrNextElement;
+    struct GenericLinkedListElement *ptrNextElement;
 };
 
-struct Array *newArray()
+struct GenericLinkedList *newGenericLinkedList()
 {
-    struct Array *newArray = (struct Array *)malloc(sizeof(struct Array));
+    struct GenericLinkedList *newArray = (struct GenericLinkedList *)malloc(sizeof(struct GenericLinkedList));
     newArray->Length = 0;
     newArray->ptrStart = NULL;
     newArray->ptrEnd = NULL;
 }
 
-int arrayIsEmpty(struct Array *this)
+int genericLinkedListIsEmpty(struct GenericLinkedList *this)
 {
     return this->ptrStart == NULL;
 }
 
-int arrayGetElementAtPosition(struct Array *this, int position)
+int genericLinkedListGetElementAtPosition(struct GenericLinkedList *this, int position)
 {
-    struct ArrayElement *currentElement = this->ptrStart;
+    struct GenericLinkedListElement *currentElement = this->ptrStart;
     for (int i = 0; i < position; i++)
     {
         currentElement = currentElement->ptrNextElement;
@@ -36,9 +36,9 @@ int arrayGetElementAtPosition(struct Array *this, int position)
     return currentElement->data;
 }
 
-struct ArrayElement *arrayGetFullElementAtPosition(struct Array *this, int position)
+struct GenericLinkedListElement *genericLinkedListGetFullElementAtPosition(struct GenericLinkedList *this, int position)
 {
-    struct ArrayElement *currentElement = this->ptrStart;
+    struct GenericLinkedListElement *currentElement = this->ptrStart;
     for (int i = 0; i < position; i++)
     {
         currentElement = currentElement->ptrNextElement;
@@ -46,13 +46,13 @@ struct ArrayElement *arrayGetFullElementAtPosition(struct Array *this, int posit
     return currentElement;
 }
 
-void arrayPushBack(struct Array *this, int data)
+void genericLinkedListPushBack(struct GenericLinkedList *this, int data)
 {
-    struct ArrayElement *newElement = (struct ArrayElement *)malloc(sizeof(struct ArrayElement));
+    struct GenericLinkedListElement *newElement = (struct GenericLinkedListElement *)malloc(sizeof(struct GenericLinkedListElement));
     newElement->data = data;
     newElement->ptrNextElement = NULL;
 
-    if (arrayIsEmpty(this))
+    if (genericLinkedListIsEmpty(this))
     {
         this->ptrStart = newElement;
         this->ptrEnd = newElement;
@@ -65,13 +65,13 @@ void arrayPushBack(struct Array *this, int data)
     this->Length++;
 }
 
-void arrayPushFront(struct Array *this, int data)
+void genericLinkedListPushFront(struct GenericLinkedList *this, int data)
 {
-    struct ArrayElement *newElement = (struct ArrayElement *)malloc(sizeof(struct ArrayElement));
+    struct GenericLinkedListElement *newElement = (struct GenericLinkedListElement *)malloc(sizeof(struct GenericLinkedListElement));
     newElement->data = data;
     newElement->ptrNextElement = NULL;
 
-    if (arrayIsEmpty(this))
+    if (genericLinkedListIsEmpty(this))
     {
         this->ptrStart = newElement;
         this->ptrEnd = newElement;
@@ -84,35 +84,35 @@ void arrayPushFront(struct Array *this, int data)
     this->Length++;
 }
 
-void arrayPushAtIndex(struct Array *this, int index, int data)
+void genericLinkedListPushAtIndex(struct GenericLinkedList *this, int index, int data)
 {
     // TODO: Check if array is empty
     if (index == 0)
     {
-        arrayPushFront(this, data);
+        genericLinkedListPushFront(this, data);
         return;
     }
     if (index == this->Length - 1)
     {
-        arrayPushBack(this, data);
+        genericLinkedListPushBack(this, data);
     }
 
-    struct ArrayElement *newElement = malloc(sizeof(struct ArrayElement));
+    struct GenericLinkedListElement *newElement = malloc(sizeof(struct GenericLinkedListElement));
     newElement->data = data;
-    struct ArrayElement *previousElement = arrayGetFullElementAtPosition(this, index - 1);
-    struct ArrayElement *nextElement = arrayGetFullElementAtPosition(this, index);
+    struct GenericLinkedListElement *previousElement = genericLinkedListGetFullElementAtPosition(this, index - 1);
+    struct GenericLinkedListElement *nextElement = genericLinkedListGetFullElementAtPosition(this, index);
     previousElement->ptrNextElement = newElement;
     newElement->ptrNextElement = nextElement;
 
     this->Length++;
 }
 
-int arrayPopLast(struct Array *this)
+int genericLinkedListPopLast(struct GenericLinkedList *this)
 {
 
     int poppedData = this->ptrEnd->data;
     free(this->ptrEnd);
-    this->ptrEnd = arrayGetFullElementAtPosition(this, this->Length - 2);
+    this->ptrEnd = genericLinkedListGetFullElementAtPosition(this, this->Length - 2);
     if (this->ptrEnd == NULL)
     {
         this->ptrStart = NULL;
@@ -125,11 +125,11 @@ int arrayPopLast(struct Array *this)
     return poppedData;
 }
 
-int arrayPopFirst(struct Array *this)
+int genericLinkedListPopFirst(struct GenericLinkedList *this)
 {
     int poppedData;
 
-    struct ArrayElement *newStart = this->ptrStart->ptrNextElement;
+    struct GenericLinkedListElement *newStart = this->ptrStart->ptrNextElement;
     poppedData = this->ptrStart->data;
     free(this->ptrStart);
     this->ptrStart = newStart;
@@ -137,21 +137,21 @@ int arrayPopFirst(struct Array *this)
     return poppedData;
 }
 
-int arrayPopAt(struct Array *this, int index)
+int genericLinkedListPopAt(struct GenericLinkedList *this, int index)
 {
     // TODO: Check if array is empty
     if (index == this->Length - 1)
     {
-        return arrayPopLast(this);
+        return genericLinkedListPopLast(this);
     }
     if (index == 0)
     {
-        return arrayPopFirst(this);
+        return genericLinkedListPopFirst(this);
     }
 
-    struct ArrayElement *elementToPop = arrayGetFullElementAtPosition(this, index);
-    struct ArrayElement *previousElement = arrayGetFullElementAtPosition(this, index - 1);
-    struct ArrayElement *nextElement = arrayGetFullElementAtPosition(this, index + 1);
+    struct GenericLinkedListElement *elementToPop = genericLinkedListGetFullElementAtPosition(this, index);
+    struct GenericLinkedListElement *previousElement = genericLinkedListGetFullElementAtPosition(this, index - 1);
+    struct GenericLinkedListElement *nextElement = genericLinkedListGetFullElementAtPosition(this, index + 1);
     previousElement->ptrNextElement = nextElement;
     int dataOfPoppedElement = elementToPop->data;
     free(elementToPop);
@@ -159,10 +159,10 @@ int arrayPopAt(struct Array *this, int index)
     return dataOfPoppedElement;
 }
 
-int arrayFind(struct Array *this, int elementToSearch)
+int genericLinkedListFind(struct GenericLinkedList *this, int elementToSearch)
 {
     int index = -1;
-    struct ArrayElement *currentElement = this->ptrStart;
+    struct GenericLinkedListElement *currentElement = this->ptrStart;
     for (int i = 0; i < this->Length; i++)
     {
         if (currentElement->data == elementToSearch)
@@ -175,10 +175,10 @@ int arrayFind(struct Array *this, int elementToSearch)
     return index;
 }
 
-int arrayFindLast(struct Array *this, int elementToSearch)
+int genericLinkedListFindLast(struct GenericLinkedList *this, int elementToSearch)
 {
     int index = -1;
-    struct ArrayElement *currentElement = this->ptrStart;
+    struct GenericLinkedListElement *currentElement = this->ptrStart;
     for (int i = 0; i < this->Length; i++)
     {
         if (currentElement->data == elementToSearch)
@@ -190,37 +190,37 @@ int arrayFindLast(struct Array *this, int elementToSearch)
     return index;
 }
 
-int assignAt(struct Array *this, int index, int data)
+int genericLinkedListAssignAt(struct GenericLinkedList *this, int index, int data)
 {
-    arrayGetFullElementAtPosition(this, index)->data = data;
+    genericLinkedListGetFullElementAtPosition(this, index)->data = data;
 }
 
-void arraySwapValuesAtPositions(struct Array *this, int indexOne, int indexTwo)
+void genericLinkedListSwapValuesAtPositions(struct GenericLinkedList *this, int indexOne, int indexTwo)
 {
-    int temp = arrayGetElementAtPosition(this, indexOne);
-    arrayGetFullElementAtPosition(this, indexOne)->data = arrayGetElementAtPosition(this, indexTwo);
-    arrayGetFullElementAtPosition(this, indexTwo)->data = temp;
+    int temp = genericLinkedListGetElementAtPosition(this, indexOne);
+    genericLinkedListGetFullElementAtPosition(this, indexOne)->data = genericLinkedListGetElementAtPosition(this, indexTwo);
+    genericLinkedListGetFullElementAtPosition(this, indexTwo)->data = temp;
 }
 
-void arraySwapValuesAtPointers(struct ArrayElement *elementOne, struct ArrayElement *elementTwo)
+void genericLinkedListSwapValuesAtPointers(struct GenericLinkedListElement *elementOne, struct GenericLinkedListElement *elementTwo)
 {
     int temp = elementOne->data;
     elementOne->data = elementTwo->data;
     elementTwo->data = temp;
 }
 
-void arraySort(struct Array *this)
+void genericLinkedListSort(struct GenericLinkedList *this)
 {
     int endIndex = this->Length;
     while (endIndex > 0)
     {
         for (int i = 0; i < endIndex - 1; i++)
         {
-            struct ArrayElement *elementOne = arrayGetFullElementAtPosition(this, i);
-            struct ArrayElement *elementTwo = arrayGetFullElementAtPosition(this, i + 1);
+            struct GenericLinkedListElement *elementOne = genericLinkedListGetFullElementAtPosition(this, i);
+            struct GenericLinkedListElement *elementTwo = genericLinkedListGetFullElementAtPosition(this, i + 1);
             if (elementTwo->data < elementOne->data)
             {
-                arraySwapValuesAtPointers(elementOne, elementTwo);
+                genericLinkedListSwapValuesAtPointers(elementOne, elementTwo);
             }
         }
 
@@ -228,18 +228,18 @@ void arraySort(struct Array *this)
     }
 }
 
-void arraySortReverse(struct Array *this)
+void genericLinkedListSortReverse(struct GenericLinkedList *this)
 {
     int endIndex = this->Length;
     while (endIndex > 0)
     {
         for (int i = 0; i < endIndex - 1; i++)
         {
-            struct ArrayElement *elementOne = arrayGetFullElementAtPosition(this, i);
-            struct ArrayElement *elementTwo = arrayGetFullElementAtPosition(this, i + 1);
+            struct GenericLinkedListElement *elementOne = genericLinkedListGetFullElementAtPosition(this, i);
+            struct GenericLinkedListElement *elementTwo = genericLinkedListGetFullElementAtPosition(this, i + 1);
             if (elementTwo->data > elementOne->data)
             {
-                arraySwapValuesAtPointers(elementOne, elementTwo);
+                genericLinkedListSwapValuesAtPointers(elementOne, elementTwo);
             }
         }
 
@@ -247,15 +247,15 @@ void arraySortReverse(struct Array *this)
     }
 }
 
-int arrayContains(struct Array *this, int value)
+int genericLinkedListContains(struct GenericLinkedList *this, int value)
 {
-    return (arrayFind(this, value) != -1);
+    return (genericLinkedListFind(this, value) != -1);
 }
 
-int arrayClear(struct Array *this)
+int genericLinkedListClear(struct GenericLinkedList *this)
 {
     while (this->Length > 0)
     {
-        arrayPopFirst(this);
+        genericLinkedListPopFirst(this);
     }
 }

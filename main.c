@@ -11,37 +11,37 @@ int main()
     printf("%d\n", intQueue->deQueue(intQueue));
     printf("%d\n", intQueue->isEmpty(intQueue));
 
-    struct Array *array = newArray();
-    arrayPushBack(array, 8);
-    arrayPushFront(array, 21);
-    arrayPushBack(array, 40);
-    arrayPushBack(array, 20);
-    arrayPushAtIndex(array, 2, 120);
-    assignAt(array, 2, 90);
+    struct GenericLinkedList *array = newGenericLinkedList();
+    genericLinkedListPushBack(array, 8);
+    genericLinkedListPushFront(array, 21);
+    genericLinkedListPushBack(array, 40);
+    genericLinkedListPushBack(array, 20);
+    genericLinkedListPushAtIndex(array, 2, 120);
+    genericLinkedListAssignAt(array, 2, 90);
 
     for (int i = 0; i < array->Length; i++)
     {
         printf("At position %d:", i);
-        printf("%d\n", arrayGetElementAtPosition(array, i));
+        printf("%d\n", genericLinkedListGetElementAtPosition(array, i));
     }
 
     printf("-------------------\n");
-    arraySortReverse(array);
-    printf("Contains returned: %d\n", arrayContains(array, 77));
+    genericLinkedListSortReverse(array);
+    printf("Contains returned: %d\n", genericLinkedListContains(array, 77));
 
     for (int i = 0; i < array->Length; i++)
     {
         printf("At position %d:", i);
-        printf("%d\n", arrayGetElementAtPosition(array, i));
+        printf("%d\n", genericLinkedListGetElementAtPosition(array, i));
     }
 
-    arrayClear(array);
+    genericLinkedListClear(array);
 
     printf("Cleared Array: \n");
     for (int i = 0; i < array->Length; i++)
     {
         printf("At position %d:", i);
-        printf("%d\n", arrayGetElementAtPosition(array, i));
+        printf("%d\n", genericLinkedListGetElementAtPosition(array, i));
     }
 
     return 0;
