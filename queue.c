@@ -1,6 +1,6 @@
+#include "queue.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 /*
 Example usage:
 
@@ -16,20 +16,6 @@ Example usage:
 */
 
 #define defineGenericQueue(T)                                                                                  \
-    struct QueueElement##T                                                                                     \
-    {                                                                                                          \
-        T data;                                                                                                \
-        struct QueueElement##T *ptrNextElement; /*Pointer to the next element in the queue, enqueued later*/   \
-    };                                                                                                         \
-    struct Queue##T                                                                                            \
-    {                                                                                                          \
-        struct QueueElement##T *end;   /* Pointer to last element enqueued*/                                   \
-        struct QueueElement##T *start; /* Pointer to first element in queue*/                                  \
-        int (*isEmpty)(struct Queue##T *);                                                                     \
-        void (*enQueue)(struct Queue##T *, T);                                                                 \
-        T(*deQueue)                                                                                            \
-        (struct Queue##T *);                                                                                   \
-    };                                                                                                         \
                                                                                                                \
     int isQueueEmpty##T(struct Queue##T *queue)                                                                \
     {                                                                                                          \
@@ -93,3 +79,12 @@ Example usage:
 // #define enQueue(T) enQueue##T
 // #define deQueue(T) deQueue##T
 #define newQueue(T) newQueue##T()
+
+defineGenericQueue(short);
+defineGenericQueue(int);
+defineGenericQueue(long);
+
+defineGenericQueue(float);
+defineGenericQueue(double);
+
+defineGenericQueue(voidPtr);
