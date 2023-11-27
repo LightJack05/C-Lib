@@ -9,7 +9,7 @@
         int (*isEmpty)(struct GenericLinkedList##T * this);                                                                                        \
         T(*at)                                                                                                                                     \
         (struct GenericLinkedList##T * this, int position);                                                                                        \
-        struct GenericLinkedListElement##T (*FullElementAt)(struct GenericLinkedList##T * this, int position);                                     \
+        struct GenericLinkedListElement##T (*ullElementAt)(struct GenericLinkedList##T * this, int position);                                      \
         void (*pushBack)(struct GenericLinkedList##T * this, T data);                                                                              \
         void (*pushFront)(struct GenericLinkedList##T * this, T data);                                                                             \
         void (*pushAtIndex)(struct GenericLinkedList##T * this, int index, T data);                                                                \
@@ -42,8 +42,23 @@
         newArray->Length = 0;                                                                                                                      \
         newArray->ptrStart = NULL;                                                                                                                 \
         newArray->ptrEnd = NULL;                                                                                                                   \
-        newArray->isEmpty = genericLinkedListIsEmpty##T;                                                                                           \
-        /*TODO: Add function references*/                                                                                                          \
+        newArray->at = genericLinkedListGetElementAtPosition##T;                                                                                   \
+        newArray->fullElementAt = genericLinkedListGetFullElementAtPosition##T;                                                                    \
+        newArray->pushBack = genericLinkedListPushBack##T;                                                                                         \
+        newArray->pushFront = genericLinkedListPushFront##T;                                                                                       \
+        newArray->pushAtIndex = genericLinkedListPushAtIndex##T;                                                                                   \
+        newArray->popLast = genericLinkedListPopLast##T;                                                                                           \
+        newArray->popFirst = genericLinkedListPopFirst##T;                                                                                         \
+        newArray->popAt = genericLinkedListPopAt##T;                                                                                               \
+        newArray->find = genericLinkedListFind##T;                                                                                                 \
+        newArray->findLast = genericLinkedListFindLast##T;                                                                                         \
+        newArray->assignAt = genericLinkedListAssignAt##T;                                                                                         \
+        newArray->swapValuesAtPositions = genericLinkedListSwapValuesAtPositions##T;                                                               \
+        newArray->swapValuesAtPointers = genericLinkedListSwapValuesAtPointers##T;                                                                 \
+        newArray->sort = genericLinkedListSort##T;                                                                                                 \
+        newArray->sortReverse = genericLinkedListSortReverse##T;                                                                                   \
+        newArray->contains = genericLinkedListContains##T;                                                                                         \
+        newArray->clear = genericLinkedListClear##T;                                                                                               \
     }                                                                                                                                              \
                                                                                                                                                    \
     int genericLinkedListIsEmpty##T(struct GenericLinkedList##T *this)                                                                             \
