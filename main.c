@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "queue.h"
+#include "array.h"
 
 int main()
 {
@@ -36,8 +37,6 @@ int main()
     // intQueue->enQueue(intQueue, 16);
     // printf("%d\n", intQueue->deQueue(intQueue));
     // printf("%d\n", intQueue->isEmpty(intQueue));
-
-    defineGenericLinkedList(int);
 
     struct GenericLinkedList(int) *linkedList = newGenericLinkedList(int);
     linkedList->pushBack(linkedList, 8);
