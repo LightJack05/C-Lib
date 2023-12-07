@@ -1,14 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "queue.c"
-#include "array.c"
-
-defineGenericQueue(int);
-defineGenericQueue(float);
+#include "queue.h"
 
 int main()
 {
-    struct Queue(int) *intQueue = newQueue(int);
+    struct Queueint *intQueue = newQueue(int);
     intQueue->enQueue(intQueue, 24);
     intQueue->enQueue(intQueue, 25);
     intQueue->enQueue(intQueue, 26);
