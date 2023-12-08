@@ -3,6 +3,8 @@
     "files.associations": {
         "*.ham": "python",
         "*.dd": "duckyscript",
-        "array.h": "c"
+        "array.h": "c",
+        "safeget.h": "c",
+        "stdlib.h": "c"
     }
 }

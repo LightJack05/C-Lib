@@ -13,6 +13,31 @@ linkedList->pushBack(linkedList, 20);
 linkedList->pushAtIndex(linkedList, 2, 120);
 linkedList->assignAt(linkedList, 2, 90);
 
+for (int i = 0; i < linkedList->Length; i++)
+{
+    printf("At position %d:", i);
+    printf("%d\n", linkedList->at(linkedList, i));
+}
+
+printf("-------------------\n");
+linkedList->sortReverse(linkedList);
+printf("Contains returned: %d\n", linkedList->contains(linkedList, 77));
+
+for (int i = 0; i < linkedList->Length; i++)
+{
+    printf("At position %d:", i);
+    printf("%d\n", linkedList->at(linkedList, i));
+}
+
+linkedList->clear(linkedList);
+
+printf("Cleared Array: \n");
+for (int i = 0; i < linkedList->Length; i++)
+{
+    printf("At position %d:", i);
+    printf("%d\n", linkedList->at(linkedList, i));
+}
+
 */
 
 typedef void *voidPtr;
