@@ -2,6 +2,19 @@
 #define ARRAY_H
 #include <stdlib.h>
 
+/*
+Example usage:
+
+struct GenericLinkedList(int) *linkedList = newGenericLinkedList(int);
+linkedList->pushBack(linkedList, 8);
+linkedList->pushFront(linkedList, 21);
+linkedList->pushBack(linkedList, 40);
+linkedList->pushBack(linkedList, 20);
+linkedList->pushAtIndex(linkedList, 2, 120);
+linkedList->assignAt(linkedList, 2, 90);
+
+*/
+
 typedef void *voidPtr;
 #define declareGenericLinkedList(T)                                                                                                                \
     struct GenericLinkedList##T                                                                                                                    \
