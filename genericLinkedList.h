@@ -68,7 +68,7 @@ typedef void *voidPtr;
         void (*sort)(struct GenericLinkedList##T * this);                                                                                          \
         void (*sortReverse)(struct GenericLinkedList##T * this);                                                                                   \
         int (*contains)(struct GenericLinkedList##T * this, T value);                                                                              \
-        int (*clear)(struct GenericLinkedList##T * this);                                                                                          \
+        void (*clear)(struct GenericLinkedList##T * this);                                                                                         \
     };                                                                                                                                             \
                                                                                                                                                    \
     struct GenericLinkedListElement##T                                                                                                             \
@@ -111,7 +111,7 @@ typedef void *voidPtr;
                                                                                                                                                    \
     int genericLinkedListContains##T(struct GenericLinkedList##T *this, T value);                                                                  \
                                                                                                                                                    \
-    int genericLinkedListClear##T(struct GenericLinkedList##T *this);                                                                              \
+    void genericLinkedListClear##T(struct GenericLinkedList##T *this);                                                                             \
                                                                                                                                                    \
     struct GenericLinkedList##T *newGenericLinkedList##T();
 

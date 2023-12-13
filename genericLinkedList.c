@@ -234,7 +234,7 @@
         return (genericLinkedListFind##T(this, value) != -1);                                                                                      \
     }                                                                                                                                              \
                                                                                                                                                    \
-    int genericLinkedListClear##T(struct GenericLinkedList##T *this)                                                                               \
+    void genericLinkedListClear##T(struct GenericLinkedList##T *this)                                                                              \
     {                                                                                                                                              \
         while (this->Length > 0)                                                                                                                   \
         {                                                                                                                                          \
