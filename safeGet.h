@@ -15,4 +15,6 @@ float safeGetFloat();
 
 void safeGetStringNotEmpty(char *string, int maxLength);
 
+void safeGetStringAndFlushInputBuffer(char *input, int maxLength);
+
 #endif // SAFEGET_H

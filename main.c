@@ -6,17 +6,22 @@
 
 int main()
 {
-    for (int i = 0; i < 10; i++)
+    // setvbuf(stdin, NULL, _IONBF, 0);
+
+    for (int i = 0; i < 1; i++)
     {
-        struct GenericLinkedList(int) *linkedList = newGenericLinkedList(int);
-        for (int i = 0; i < 100000; i++)
+        struct GenericLinkedList(voidPtr) *linkedList = newGenericLinkedList(voidPtr);
+        for (int j = 0; j < 5; j++)
         {
-            linkedList->pushBack(linkedList, rand());
+            char string[20];
+            // safeGetStringNotEmpty(string, 19);
+            safeGetStringNotEmpty(string, sizeof(string) - 1);
+            linkedList->pushBack(linkedList, string);
         }
 
-        for (int i = 0; i < linkedList->Length; i++)
+        for (int j = 0; j < linkedList->Length; j++)
         {
-            printf("%d", linkedList->at(linkedList, i));
+            free(linkedList->at(linkedList, j));
         }
         linkedList->dispose(linkedList);
     }
