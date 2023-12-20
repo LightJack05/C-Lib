@@ -243,10 +243,7 @@
     }                                                                                                                                              \
     void genericLinkedListDispose##T(struct GenericLinkedList##T *this)                                                                            \
     {                                                                                                                                              \
-        while (this->Length > 0)                                                                                                                   \
-        {                                                                                                                                          \
-            this->popLast(this);                                                                                                                   \
-        }                                                                                                                                          \
+        this->clear(this);                                                                                                                         \
         free(this);                                                                                                                                \
     }                                                                                                                                              \
     struct GenericLinkedList##T *newGenericLinkedList##T()                                                                                         \

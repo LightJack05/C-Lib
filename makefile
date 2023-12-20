@@ -1,7 +1,7 @@
 sourceFiles := genericLinkedList.c queue.c safeGet.c main.c
 buildDirectory := bin
 cStandard := c11
-defaultOptions := -std=$(cStandard) -fdiagnostics-color=always -Wall -g
+defaultOptions := -std=$(cStandard) -fdiagnostics-color=always -Wall -pg
 programName := main
 compiler := gcc
 SHELL := /bin/bash
