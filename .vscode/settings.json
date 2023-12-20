@@ -1,11 +1,3 @@
 {
-    "C_Cpp.errorSquiggles": "disabled",
-    "files.associations": {
-        "*.ham": "python",
-        "*.dd": "duckyscript",
-        "array.h": "c",
-        "safeget.h": "c",
-        "stdlib.h": "c",
-        "malloc.h": "c"
-    }
+    "C_Cpp.errorSquiggles": "enabledIfIncludesResolve"
 }
