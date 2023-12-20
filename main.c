@@ -6,7 +6,7 @@
 
 int main()
 {
-    int someInt = safeGetIntInRange(2, 20);
-    printf("%d\n", someInt);
+    float someFloat = safeGetFloat();
+    printf("%f\n", someFloat);
     return 0;
 }

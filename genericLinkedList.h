@@ -1,5 +1,5 @@
-#ifndef ARRAY_H
-#define ARRAY_H
+#ifndef GENERIC_LINKED_LIST_H
+#define GENERIC_LINKED_LIST_H
 #include <stdlib.h>
 
 /*
@@ -69,6 +69,7 @@ typedef void *voidPtr;
         void (*sortReverse)(struct GenericLinkedList##T * this);                                                                                   \
         int (*contains)(struct GenericLinkedList##T * this, T value);                                                                              \
         void (*clear)(struct GenericLinkedList##T * this);                                                                                         \
+        void (*dispose)(struct GenericLinkedList##T * this);                                                                                       \
     };                                                                                                                                             \
                                                                                                                                                    \
     struct GenericLinkedListElement##T                                                                                                             \
@@ -113,6 +114,8 @@ typedef void *voidPtr;
                                                                                                                                                    \
     void genericLinkedListClear##T(struct GenericLinkedList##T *this);                                                                             \
                                                                                                                                                    \
+    void genericLinkedListDispose##T(struct GenericLinkedList##T *this);                                                                           \
+                                                                                                                                                   \
     struct GenericLinkedList##T *newGenericLinkedList##T();
 
 #define newGenericLinkedList(T) newGenericLinkedList##T()
@@ -124,4 +127,4 @@ declareGenericLinkedList(float);
 declareGenericLinkedList(double);
 declareGenericLinkedList(voidPtr);
 
-#endif // ARRAY_H
+#endif // GENERIC_LINKED_LIST_H

@@ -24,9 +24,9 @@ int safeGetPositiveInt()
     int inputValue = 0;
     while (!isValidInt)
     {
-        printf("[int>0]: ");
+        printf("[int>=0]: ");
         scanf("%d", &inputValue);
-        if (inputValue > 0)
+        if (inputValue >= 0)
         {
             printf("Got: %d\n", inputValue);
             isValidInt = safeGetContinue();
@@ -61,7 +61,7 @@ int safeGetIntInRange(int min, int max)
 
 int safeGetBoolFromInt()
 {
-    safeGetIntInRange(0, 2);
+    return safeGetIntInRange(0, 2);
 }
 
 int safeGetContinue()
@@ -73,7 +73,7 @@ int safeGetContinue()
     while (!isValidInput)
     {
         printf("Continue? [y/n] ");
-        scanf("%s", input);
+        scanf("%9s", input);
         memset(validatedInput, 0, 10);
         for (int i = 0; i < strlen(input); i++)
         {
@@ -91,6 +91,19 @@ int safeGetContinue()
     return !strcmp(validatedInput, "y") ? 1 : 0;
 }
 
-float safeGetFloat();
+float safeGetFloat()
+{
+    float isValidInt = 0.0;
+    float inputValue = 0.0;
+    while (!isValidInt)
+    {
+        printf("[decimal]: ");
+        scanf("%f", &inputValue);
+
+        printf("Got: %f\n", inputValue);
+        isValidInt = safeGetContinue();
+    }
+    return inputValue;
+}
 
 char *safeGetStringNotEmpty();

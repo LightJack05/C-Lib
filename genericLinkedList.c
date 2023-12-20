@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "genericLinkedList.h"
+#include <stdlib.h>
 
 #define defineGenericLinkedList(T)                                                                                                                 \
                                                                                                                                                    \
@@ -241,6 +241,14 @@
             genericLinkedListPopFirst##T(this);                                                                                                    \
         }                                                                                                                                          \
     }                                                                                                                                              \
+    void genericLinkedListDispose##T(struct GenericLinkedList##T *this)                                                                            \
+    {                                                                                                                                              \
+        while (this->Length > 0)                                                                                                                   \
+        {                                                                                                                                          \
+            this->popLast(this);                                                                                                                   \
+        }                                                                                                                                          \
+        free(this);                                                                                                                                \
+    }                                                                                                                                              \
     struct GenericLinkedList##T *newGenericLinkedList##T()                                                                                         \
     {                                                                                                                                              \
         struct GenericLinkedList##T *newArray = (struct GenericLinkedList##T *)malloc(sizeof(struct GenericLinkedList##T));                        \
@@ -264,6 +272,7 @@
         newArray->sortReverse = genericLinkedListSortReverse##T;                                                                                   \
         newArray->contains = genericLinkedListContains##T;                                                                                         \
         newArray->clear = genericLinkedListClear##T;                                                                                               \
+        newArray->dispose = genericLinkedListDispose##T;                                                                                           \
         return newArray;                                                                                                                           \
     }
 
