@@ -179,7 +179,7 @@ void safeGetStringAndFlushInputBuffer(char *input, int maxLength)
 /// @warning `NOTE:` Do not use if the buffer is already empty, as it will cause the input to block and wait for a character.
 static void flushInputBuffer()
 {
-    int flushDump;
+    int flushDump = getchar();
     while (flushDump != '\n' && flushDump != EOF)
     {
         flushDump = getchar();
