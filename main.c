@@ -6,7 +6,7 @@
 
 int main()
 {
-    float someFloat = safeGetFloat();
-    printf("%f\n", someFloat);
-    return 0;
+    char *string[100];
+    safeGetStringNotEmpty(string, 99);
+    printf(string);
 }

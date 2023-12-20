@@ -79,7 +79,10 @@ int safeGetContinue()
         {
             if (isalpha(input[i]))
             {
-                strcat(validatedInput, &(input[i]));
+                char currentChar[2];
+                memset(currentChar, 0, 2);
+                currentChar[0] = input[i];
+                strcat(validatedInput, currentChar);
             }
         }
 
@@ -93,17 +96,50 @@ int safeGetContinue()
 
 float safeGetFloat()
 {
-    float isValidInt = 0.0;
+    int isValidFloat = 0;
     float inputValue = 0.0;
-    while (!isValidInt)
+    while (!isValidFloat)
     {
         printf("[decimal]: ");
         scanf("%f", &inputValue);
 
         printf("Got: %f\n", inputValue);
-        isValidInt = safeGetContinue();
+        isValidFloat = safeGetContinue();
     }
     return inputValue;
 }
 
-char *safeGetStringNotEmpty();
+void safeGetStringNotEmpty(char *string, int maxLength)
+{
+    char validatedInput[maxLength];
+    char input[maxLength];
+
+    int isValidInput = 0;
+    while (!isValidInput)
+    {
+        printf("[text]: ");
+        char lengthAsString[20];
+        sprintf(lengthAsString, "%d", maxLength - 1);
+        char format[22] = "%";
+        strcat(format, lengthAsString);
+        strcat(format, "s");
+        scanf(format, input);
+        memset(validatedInput, 0, maxLength);
+        for (int i = 0; i < strlen(input); i++)
+        {
+            if (!iscntrl(input[i]))
+            {
+                char currentChar[2];
+                memset(currentChar, 0, 2);
+                currentChar[0] = input[i];
+                strcat(validatedInput, currentChar);
+            }
+        }
+        printf("Got: %s\n", input);
+        if (strlen(validatedInput) > 0 && safeGetContinue())
+        {
+            isValidInput = 1;
+        }
+    }
+    strcpy(string, validatedInput);
+}

@@ -13,6 +13,6 @@ int safeGetContinue();
 
 float safeGetFloat();
 
-char *safeGetStringNotEmpty();
+void safeGetStringNotEmpty(char *string, int maxLength);
 
 #endif // SAFEGET_H
