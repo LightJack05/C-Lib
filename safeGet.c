@@ -1,5 +1,8 @@
 #include "safeGet.h"
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include "malloc.h"
 
 int safeGetInt()
 {
@@ -36,11 +39,13 @@ int safeGetPositiveInt()
 int safeGetIntInRange(int min, int max)
 {
     int isValidInt = 0;
+    char inputString[10];
     int inputValue = 0;
     while (!isValidInt)
     {
         printf("[%d - %d]: ", min + 1, max - 1);
-        scanf("%d", &inputValue);
+        scanf("%s", inputString);
+        sscanf(inputString, "%d", &inputValue);
         if (inputValue > min && inputValue < max)
         {
             printf("Got: %d\n", inputValue);
@@ -62,20 +67,29 @@ int safeGetBoolFromInt()
 
 int safeGetContinue()
 {
-
-    char symbol = 'f';
+    char validatedInput[10] = "";
+    char input[10];
 
     int isValidInput = 0;
     while (!isValidInput)
     {
         printf("Continue? [y/n] ");
-        scanf(" %c", &symbol);
-        if (symbol == 'y' || symbol == 'n')
+        scanf("%s", input);
+        memset(validatedInput, 0, 10);
+        for (int i = 0; i < strlen(input); i++)
+        {
+            if (isalpha(input[i]))
+            {
+                strcat(validatedInput, &(input[i]));
+            }
+        }
+
+        if (!strcmp(validatedInput, "y") || !strcmp(validatedInput, "n"))
         {
             isValidInput = 1;
         }
     }
-    return symbol == 'y' ? 1 : 0;
+    return !strcmp(validatedInput, "y") ? 1 : 0;
 }
 
 float safeGetFloat();

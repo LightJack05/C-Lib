@@ -5,6 +5,7 @@
         "*.dd": "duckyscript",
         "array.h": "c",
         "safeget.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "malloc.h": "c"
     }
 }
