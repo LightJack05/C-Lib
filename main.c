@@ -7,28 +7,9 @@
 
 int main()
 {
-    // setvbuf(stdin, NULL, _IONBF, 0);
+    int test = safeGetIntInRange(2, 10);
+    printf("%d", test);
 
-    struct GenericLinkedList(voidPtr) *linkedList = newGenericLinkedList(voidPtr);
-    for (int j = 0; j < 500; j++)
-    {
-        printf("%d\n", j);
-        char string[] = "lel";
-        // safeGetStringNotEmpty(string, 19);
-        // safeGetStringNotEmpty(string, sizeof(string) - 1);
-        char *heapString = malloc(sizeof(string));
-        if (heapString == NULL)
-        {
-            printf("MEMORY ALLOCATION FAILED!");
-            abort();
-        }
-        memcpy(heapString, string, sizeof(string));
-        linkedList->pushBack(linkedList, heapString);
-    }
-
-    for (int j = 0; j < linkedList->Length; j++)
-    {
-        free(linkedList->at(linkedList, j));
-    }
-    linkedList->dispose(linkedList);
+    char string[20];
+    safeGetStringNotEmpty(string, 19);
 }

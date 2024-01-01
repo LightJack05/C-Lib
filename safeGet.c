@@ -15,6 +15,7 @@ int safeGetInt()
     {
         printf("[int]: ");
         scanf("%d", &inputValue);
+        flushInputBuffer();
 
         printf("Got: %d\n", inputValue);
         isValidInt = safeGetContinue();
@@ -32,6 +33,7 @@ int safeGetPositiveInt()
     {
         printf("[int>=0]: ");
         scanf("%d", &inputValue);
+        flushInputBuffer();
         if (inputValue >= 0)
         {
             printf("Got: %d\n", inputValue);
@@ -55,6 +57,7 @@ int safeGetIntInRange(int min, int max)
         printf("[%d - %d]: ", min + 1, max - 1);
         scanf("%s", inputString);
         sscanf(inputString, "%d", &inputValue);
+        flushInputBuffer();
         if (inputValue > min && inputValue < max)
         {
             printf("Got: %d\n", inputValue);
